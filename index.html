@@ -142,10 +142,10 @@
       window.netlifyIdentity.on("login", () => {
         document.getElementById("showform").style.display="block";
         document.getElementById("hideform").style.display = "none";
-        document.getElementById("contact-name").disabled = true;
-        document.getElementById("contact-email").disabled = true;
         document.getElementById("contact-name").value = obj.user_metadata.full_name;
+        document.getElementById("contact-name").readOnly  = true;
         document.getElementById("contact-email").value = obj.email;
+        document.getElementById("contact-email").readOnly  = true;
       });
     </script>
   </body>
