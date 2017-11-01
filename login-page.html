@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Page</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/netlify-identity.css" rel="stylesheet">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </head>
+  <body>  
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Login Page</h1>
+          <div data-netlify-identity-menu></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.netlifyIdentity.on("login", () => {
+        location.reload();
+        document.location.href = "/index.html";
+      });
+    </script>
+  </body>
+</html>

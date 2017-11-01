@@ -6,14 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Form Test</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/netlify-identity.css" rel="stylesheet">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </head>
-  <body>  
-    <h1>Test Form</h1>
-    <div class="container">
+  <body>
+    <script>
+      const user = netlifyIdentity.currentUser();
+      var userdata = localStorage.getItem('gotrue.user');
+    </script>
+    <div class="container" id="hideform">
       <div class="row">
         <div class="col-lg-12">
+          <h1>Please Login / Register Before filling up the form</h1>
+          <a href="login-page.html">Back to login page</a>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="showform" style="display:none">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Test Form</h1>
           <form class="form-horizontal" name="narative-report" netlify-honeypot="bot-field" action="thank-you" netlify>
           <div class="form-group required">
             <label class="control-label col-md-2" for="grantno">Grant Contract No.</label>
@@ -123,5 +137,16 @@
         </div>
       </div>
     </div>
+    <script>
+      var obj = JSON.parse(userdata);
+      window.netlifyIdentity.on("login", () => {
+        document.getElementById("showform").style.display="block";
+        document.getElementById("hideform").style.display = "none";
+        document.getElementById("contact-name").disabled = true;
+        document.getElementById("contact-email").disabled = true;
+        document.getElementById("contact-name").value = obj.user_metadata.full_name;
+        document.getElementById("contact-email").value = obj.email;
+      });
+    </script>
   </body>
 </html>
